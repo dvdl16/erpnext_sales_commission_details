@@ -1,0 +1,60 @@
+<style>
+    .print-format table, .print-format tr,
+    .print-format td, .print-format div, .print-format p {
+        line-height: 10mm;
+                font-size: 9pt;
+        vertical-align: middle;
+
+
+    }
+    @media screen {
+        .print-format {
+            width: 297mm;
+            min-height: 420mm;
+        }
+    }
+
+
+</style>
+
+<h2 class="text-center">{%= __("Sales Partner Commission Detail") %}</h2>
+<h4 class="text-center">
+  {%= filters.sales_partner %}
+  {%= filters.from_date %}
+  {%= filters.to_date %}
+</h4>
+
+<hr>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 5%">{%= __("Date") %}</th>
+			<th style="width: 5%">{%= __("Customer") %}</th>
+			<th style="width: 18%">{%= __("Invoice") %}</th>
+			<th style="width: 5%">{%= __("Item") %}</th>
+      <th style="width: 5%">{%= __("Item Name") %}</th>
+			<th style="width: 5%">{%= __("Qty") %}</th>
+      <th style="width: 3%">{%= __("Rate") %}</th>
+			<th style="width: 3%">{%= __("Total") %}</th>
+      <th style="width: 10%">{%= __("Commission Rate") %}</th>
+      <th style="width: 3%">{%= __("Total Commission") %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=0, l=data.length; i<l; i++) { %}
+			<tr>
+				<td>{%= data[i].posting_date %}</td>
+        <td>{%= data[i].customer_name %}</td>
+        <td>{%= data[i].name %}</td>
+        <td>{%= data[i].item_code %}</td>
+        <td>{%= data[i].item_name %}</td>
+        <td>{%= data[i].qty %}</td>
+        <td>{%= data[i].rate %}</td>
+        <td>{%= format_currency(data[i].total) %}</td>
+        <td>{%= data[i].commission_rate %}</td>
+        <td>{%= format_currency(data[i].total_commission) %}</td>
+			</tr>
+		{% } %}
+	</tbody>
+</table>
+<p class="text-right text-muted">Printed On {%= frappe.datetime.str_to_user(frappe.datetime.get_datetime_as_string()) %}</p>
