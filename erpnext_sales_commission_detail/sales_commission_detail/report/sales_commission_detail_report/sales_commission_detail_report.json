@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2019-05-18 12:29:25.394614",
+ "modified": "2019-05-18 13:37:46.735302",
  "modified_by": "Administrator",
  "module": "Sales Commission Detail",
  "name": "Sales Commission Detail Report",
@@ -16,12 +16,5 @@
  "ref_doctype": "Sales Invoice",
  "report_name": "Sales Commission Detail Report",
  "report_type": "Script Report",
- "roles": [
-  {
-   "role": "Accounts Manager"
-  },
-  {
-   "role": "Accounts User"
-  }
- ]
+ "roles": []
 }
