@@ -36,21 +36,21 @@ def get_columns():
 	    "label": _("Invoice"),
 	    "fieldtype": "Link",
 	    "options": "Sales Invoice",
-	    "width": 100
+	    "width": 130
 	},
 	{
 	    "fieldname": "item_code",
 	    "label": _("Item"),
 	    "fieldtype": "Link",
 	    "options": "Item",
-	    "width": 100
+	    "width": 200
 	},
 	{
 	    "fieldname": "item_name",
 	    "label": _("Item Name"),
 	    "fieldtype": "",
 	    "options": "",
-	    "width": 200
+	    "width": 100
 	},
 	{
 	    "fieldname": "qty",
