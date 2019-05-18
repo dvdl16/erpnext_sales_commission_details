@@ -28,13 +28,13 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<th style="width: 5%">{%= __("Date") %}</th>
-			<th style="width: 20%">{%= __("Customer") %}</th>
+			<th style="width: 10%">{%= __("Date") %}</th>
+			<th style="width: 15%">{%= __("Customer") %}</th>
 			<th style="width: 10%">{%= __("Invoice") %}</th>
-			<th style="width: 10%">{%= __("Item") %}</th>
-      <th style="width: 10%">{%= __("Item Name") %}</th>
+			<th style="width: 5%">{%= __("Item") %}</th>
+      <th style="width: 15%">{%= __("Item Name") %}</th>
 			<th style="width: 5%">{%= __("Qty") %}</th>
-      <th style="width: 10%">{%= __("Rate") %}</th>
+      <th style="width: 5%">{%= __("Rate") %}</th>
 			<th style="width: 10%">{%= __("Total") %}</th>
       <th style="width: 10%">{%= __("Commission Rate") %}</th>
       <th style="width: 10%">{%= __("Total Commission") %}</th>
@@ -43,16 +43,46 @@
 	<tbody>
 		{% for(var i=0, l=data.length; i<l; i++) { %}
 			<tr>
-				<td>{%= data[i].posting_date %}</td>
-        <td>{%= data[i].customer_name %}</td>
-        <td>{%= data[i].name %}</td>
+				<td>
+          {% if data[i].item_code %}
+            {%= data[i].posting_date %}
+          {% else %}
+              <b>{%= data[i].posting_date %}</b>
+          {% endif %}
+        </td>
+        <td>
+          {% if data[i].item_code %}
+            {%= data[i].customer_name %}
+          {% else %}
+              <b>{%= data[i].customer_name %}</b>
+          {% endif %}
+        </td>
+        <td>
+          {% if data[i].item_code %}
+              {%= data[i].name %}
+          {% else %}
+              <b>{%= data[i].name %}</b>
+          {% endif %}
+        </td>
         <td>{%= data[i].item_code %}</td>
         <td>{%= data[i].item_name %}</td>
         <td>{%= data[i].qty %}</td>
         <td>{%= data[i].rate %}</td>
-        <td>{%= format_currency(data[i].total) %}</td>
+        <td>
+          {% if data[i].item_code %}
+            {%= format_currency(data[i].total) %}
+          {% else %}
+              <b>{%= format_currency(data[i].total) %}</b>
+          {% endif %}
+        </td>
         <td>{%= data[i].commission_rate %}</td>
-        <td>{%= format_currency(data[i].total_commission) %}</td>
+        <td>
+          {% if data[i].item_code %}
+            {%= format_currency(data[i].total_commission) %}
+          {% else %}
+              <b>{%= format_currency(data[i].total_commission) %}</b>
+          {% endif %}
+        </td>
 			</tr>
 		{% } %}
 	</tbody>

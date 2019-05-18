@@ -22,5 +22,17 @@ frappe.query_reports["Sales Commission Detail Report"] = {
 					"fieldtype": "Date",
 					"options": ""
 			}
-	]
+	],
+	"formatter": function (value, row, column, data, default_formatter) {
+		var value = default_formatter(value, row, column, data);
+			if (data["name"]){
+				if (data["name"].includes("Total for")) {
+					value= "<span style='font-weight:bold'>" + value + "</span>";
+				};
+			}
+			else {
+				value = value;
+			}
+			return value;
+		}
 }
