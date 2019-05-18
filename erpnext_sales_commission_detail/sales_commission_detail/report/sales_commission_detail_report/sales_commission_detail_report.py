@@ -111,11 +111,11 @@ def get_invoice_items(filters):
 		FROM (
 			SELECT posting_date, customer_name, name, SUM(base_net_total) AS 'invoice_total', sales_partner, commission_rate, SUM(total_commission) AS 'total_commission'
 			FROM `tabSales Invoice`
-			WHERE sales_partner = '{sales_partner}' AND posting_date >= '{from_date}' AND posting_date <= '{to_date}'
-			GROUP BY customer_name, name WITH ROLLUP LIMIT 100 ) AS t_inv LEFT JOIN `tabSales Invoice Item` AS t_invitem 
-			ON t_invitem.parent = t_inv.name """.format(
-				sales_partner=sales_partner,
-				from_date=from_date,
-				to_date=to_date
-			)
-	)
+			WHERE sales_partner = '{sales_partner}' AND posting_date >= %(from_date)s AND posting_date <= %(to_date)s
+			GROUP BY customer_name, name WITH ROLLUP LIMIT 100 ) AS t_inv LEFT JOIN `tabSales Invoice Item` AS t_invitem
+			ON t_invitem.parent = t_inv.name """.format(sales_partner=sales_partner),
+			{
+				"from_date": from_date,
+				"to_date": to_date
+			},
+			as_dict=True)
